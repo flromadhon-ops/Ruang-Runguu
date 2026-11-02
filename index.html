@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruang Rungu – Komunikasi Inklusif Kasir & Front Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d2147;--paper:#fffaf0;--card:#fff;--sun:#ffc83d;--coral:#ff6b5b;--teal:#14b8a6;--violet:#7c5cff;--sky:#4cb8ff;--mint:#c9f5e8;--line:#1d2147;--shadow:4px 4px 0 var(--ink)}
+@media(prefers-color-scheme:dark){:root{--ink:#fff8e7;--paper:#1a1d3d;--card:#262a57;--mint:#1e4d4a;--line:#fff8e7;--shadow:4px 4px 0 #0c0e24}}
+body.hc{--ink:#000;--paper:#000;--card:#000;--line:#ffe600;--shadow:none;color:#ffe600}
+body.hc *{color:#ffe600!important;background-image:none!important;border-color:#ffe600!important}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font:600 17px/1.5 Nunito,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";color:var(--ink);background:var(--paper);padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);
+}
+h1,h2,h3{font-family:Fredoka,Nunito,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";margin:.2em 0;line-height:1.15}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:var(--sun);color:#1d2147;padding:8px 14px;border-radius:12px;z-index:99}
+:focus-visible{outline:4px solid var(--violet);outline-offset:3px}
+header{max-width:1100px;margin:0 auto;padding:18px 16px 6px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,var(--coral),var(--sun));border:3px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;font-size:30px;transform:rotate(-6deg)}
+.brand h1{font-size:clamp(26px,5vw,38px);margin:0}
+.brand p{margin:0;font-weight:700;opacity:.8}
+.toggle{border:3px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:800 16px Nunito,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";cursor:pointer;box-shadow:var(--shadow)}
+.toggle[aria-pressed=true]{background:var(--teal);color:#fff}
+nav{max-width:1100px;margin:8px auto 0;padding:6px 16px;display:flex;gap:10px;overflow-x:auto}
+nav button{flex:none;border:3px solid var(--line);border-radius:16px;padding:10px 16px;font:700 16px Fredoka,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";background:var(--card);color:var(--ink);cursor:pointer;box-shadow:var(--shadow)}
+nav button[aria-selected=true]{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);color:#1d2147}
+nav button:nth-child(1)[aria-selected=true]{background:var(--sun)}nav button:nth-child(2)[aria-selected=true]{background:var(--sky)}nav button:nth-child(3)[aria-selected=true]{background:var(--coral);color:#fff}nav button:nth-child(4)[aria-selected=true]{background:var(--teal);color:#fff}nav button:nth-child(5)[aria-selected=true]{background:var(--violet);color:#fff}
+main{max-width:1100px;margin:0 auto;padding:16px}
+section[hidden]{display:none}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.card{background:var(--card);border:3px solid var(--line);border-radius:26px;padding:20px;box-shadow:var(--shadow)}
+.card.sun{background:#fff1b8;color:#1d2147}.card.sky{background:#d6efff;color:#1d2147}.card.mint{background:var(--mint)}
+.card.sun h2,.card.sky h2{color:#1d2147}
+label{display:block;font-weight:800;margin:12px 0 6px}
+textarea,input,select{width:100%;border:3px solid var(--line);border-radius:16px;padding:12px 14px;font:700 17px Nunito,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";background:#fff;color:#1d2147}
+textarea{min-height:90px;resize:vertical}
+.btn{border:3px solid var(--line);border-radius:18px;padding:12px 18px;font:700 18px Fredoka,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";cursor:pointer;color:#1d2147;box-shadow:var(--shadow);background:var(--sun);transition:transform .08s}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.coral{background:var(--coral);color:#fff}.btn.teal{background:var(--teal);color:#fff}.btn.violet{background:var(--violet);color:#fff}.btn.sky{background:var(--sky)}.btn.plain{background:var(--card);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:3px solid var(--line);border-radius:999px;padding:6px 14px;font:700 16px Nunito,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";background:#fff;color:#1d2147;cursor:pointer}
+.chip:nth-child(4n+1){background:#ffe3df}.chip:nth-child(4n+2){background:#d9f7f2}.chip:nth-child(4n+3){background:#e7e0ff}.chip:nth-child(4n+4){background:#fff1b8}
+.screen{background:#fff;color:#1d2147;border:3px dashed var(--line);border-radius:22px;min-height:190px;padding:18px;display:grid;place-items:center;text-align:center;font:700 var(--fs,34px)/1.2 Fredoka,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";word-break:break-word}
+.inbox{max-height:170px;overflow:auto;margin:0;padding:0;list-style:none}
+.inbox li{background:#e7e0ff;color:#1d2147;border-radius:14px;padding:8px 12px;margin:6px 0;font-weight:700}
+.mic{width:min(100%,260px);aspect-ratio:1;border-radius:50%;margin:10px auto;display:grid;place-items:center;font:700 26px Fredoka,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";text-align:center;border:4px solid var(--line);box-shadow:6px 6px 0 var(--ink);background:radial-gradient(circle at 30% 25%,#ff9d8f,var(--coral));color:#fff;cursor:pointer}
+.mic[aria-pressed=true]{background:radial-gradient(circle at 30% 25%,#7df0e0,var(--teal));animation:pulse 1.1s infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+@media(prefers-reduced-motion:reduce){.mic[aria-pressed=true]{animation:none}}
+.mic span{display:block;font-size:56px}
+.result{min-height:56px;background:#fff;color:#1d2147;border:3px solid var(--line);border-radius:16px;padding:12px;font-weight:800}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.tile{aspect-ratio:1;border:3px solid var(--line);border-radius:24px;box-shadow:var(--shadow);display:grid;place-items:center;align-content:center;gap:4px;font:700 20px Fredoka,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";color:#1d2147;cursor:pointer;text-align:center;padding:10px}
+.tile i{font-style:normal;font-size:52px}
+.tile:nth-child(6n+1){background:var(--sun)}.tile:nth-child(6n+2){background:#ff9d8f}.tile:nth-child(6n+3){background:#7df0e0}.tile:nth-child(6n+4){background:#b9a8ff}.tile:nth-child(6n+5){background:#8fd4ff}.tile:nth-child(6n+6){background:#b7f08c}
+#full{position:fixed;inset:0;display:none;place-items:center;text-align:center;font:700 clamp(40px,12vw,120px)/1.1 Fredoka,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";padding:24px;z-index:50;cursor:pointer;color:#1d2147}
+#full.on{display:grid}#full i{display:block;font-style:normal;font-size:1.6em}
+ol.steps{list-style:none;padding:0;counter-reset:s;display:grid;gap:12px}
+ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+ol.steps li::before{content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--coral);color:#fff;border:3px solid var(--line);display:grid;place-items:center;font:700 18px Fredoka}
+ol.steps li:nth-child(even)::before{background:var(--teal)}
+table{width:100%;border-collapse:separate;border-spacing:0;border:3px solid var(--line);border-radius:18px;overflow:hidden}
+th,td{padding:10px 12px;text-align:left;vertical-align:top}
+th:first-child{background:var(--teal);color:#fff}th:last-child{background:var(--coral);color:#fff}
+td:first-child{background:var(--mint)}td:last-child{background:#ffe3df;color:#1d2147}
+.note{background:#fff1b8;color:#1d2147;border:3px dashed var(--line);border-radius:16px;padding:10px 14px;font-size:15px}
+kbd{background:var(--sun);color:#1d2147;border:2px solid var(--line);border-radius:8px;padding:1px 8px;font-weight:800}
+.table-wrap{overflow-x:auto}
+#gate{position:fixed;inset:0;z-index:60;display:none;overflow:auto;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));background:var(--paper)}
+#gate.on{display:block}
+#gate .in{max-width:560px;margin:0 auto;display:grid;gap:16px}
+.code{font:700 44px Fredoka,monospace;letter-spacing:.2em;text-align:center;background:#fff;color:#1d2147;border:3px dashed var(--line);border-radius:18px;padding:8px}
+body.role-staff #guestCard,body.role-guest #staffCard{display:none}
+#status{font-size:15px;padding:6px 14px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Lewati ke konten utama</a>
+<header>
+  <div class="brand"><div class="logo" aria-hidden="true">🫱🏻‍🫲🏼</div><div><h1>Ruang Rungu</h1><p>Komunikasi inklusif untuk kasir dan front desk</p></div></div>
+  <div class="row" style="margin:0"><span class="toggle" id="status" hidden role="status"></span><button class="toggle" id="roleBtn">🔄 Ganti peran</button><button class="toggle" id="readBtn" aria-pressed="false">🔊 Bacakan keras: mati</button></div>
+</header>
+<nav role="tablist" aria-label="Halaman">
+  <button role="tab" data-p="dual" aria-selected="true">🖥️ Layar ganda</button>
+  <button role="tab" data-p="voice" aria-selected="false">🎧 Mode suara</button>
+  <button role="tab" data-p="board" aria-selected="false">🗂️ Papan visual</button>
+  <button role="tab" data-p="sop" aria-selected="false">📋 SOP & pelatihan</button>
+  <button role="tab" data-p="test" aria-selected="false">📊 Uji coba</button>
+</nav>
+<main id="main">
+
+<section id="p-dual">
+ <div class="grid">
+  <div class="card sun" id="staffCard">
+   <h2>👤 Layar staf kasir</h2>
+   <p>Bicara atau ketik. Teks tampil besar di layar pelanggan, dan bisa dibacakan untuk pelanggan tuna netra.</p>
+   <div class="row"><button class="btn coral" id="dictate" aria-pressed="false">🎤 Mulai bicara</button><button class="btn plain" id="clear">🗑️ Hapus</button></div>
+   <label for="msg">Pesan untuk pelanggan</label>
+   <textarea id="msg" placeholder="Ketik pesan di sini"></textarea>
+   <div class="row"><button class="btn teal" id="send">📤 Kirim ke layar pelanggan</button></div>
+   <p class="note" id="sentNote" hidden></p>
+   <label>Kalimat cepat</label>
+   <div class="chips" id="quick"></div>
+   <label for="total">Total pembayaran</label>
+   <div class="row" style="margin-top:0"><input id="total" inputmode="numeric" placeholder="Nominal total, mis. 45000" style="flex:1"><button class="btn violet" id="showTotal">💰 Tampilkan total</button></div>
+   <label>Pesan dari pelanggan</label>
+   <ul class="inbox" id="inbox"><li>Belum ada pesan.</li></ul>
+  </div>
+  <div class="card sky" id="guestCard">
+   <h2>🙋 Layar pelanggan Teman Tuli</h2>
+   <p>Teks dari staf tampil di sini. Ketuk kartu untuk menjawab.</p>
+   <div class="screen" id="guest" aria-live="polite">Selamat datang 👋</div>
+   <div class="row"><button class="btn plain" id="fm" aria-label="Perkecil teks">A−</button><button class="btn plain" id="fp" aria-label="Perbesar teks">A+</button><button class="btn violet" id="contrast">🌗 Ganti kontras</button></div>
+   <div class="chips" id="replies" style="margin-top:12px"></div>
+   <label for="greply">Pesan ke staf</label>
+   <div class="row" style="margin-top:0"><input id="greply" placeholder="Ketik balasan" style="flex:1"><button class="btn coral" id="gsend">📨 Kirim</button></div>
+  </div>
+ </div>
+</section>
+
+<section id="p-voice" hidden>
+ <div class="grid">
+  <div class="card mint">
+   <h2>🎧 Mode suara untuk teman tuna netra</h2>
+   <p>Tekan tombol besar, lalu ucapkan satu kalimat. Pesan langsung masuk ke layar staf. Jawaban staf dibacakan keras.</p>
+   <button class="mic" id="bigmic" aria-pressed="false"><div><span>🎤</span>Tekan lalu bicara</div></button>
+   <div class="result" id="heard" aria-live="polite">Hasil ucapan tampil di sini.</div>
+   <div class="row"><button class="btn sky" id="again">🔁 Ulangi pesan staf</button><button class="btn violet" id="sayTotal">💰 Bacakan total</button><button class="btn coral" id="help">🆘 Panggil staf</button></div>
+   <label for="rate">Kecepatan suara</label>
+   <div class="row" style="margin-top:0"><input id="rate" type="range" min="0.6" max="1.6" step="0.1" value="1" style="flex:1"><button class="btn plain" id="testVoice">🔈 Tes suara</button></div>
+  </div>
+  <div class="card">
+   <h2>Perintah suara</h2>
+   <p>Ucapkan salah satu perintah ini. Kalimat lain akan dikirim apa adanya ke staf.</p>
+   <ul>
+    <li><b>“Ulangi”</b>: membacakan pesan staf terakhir.</li>
+    <li><b>“Total”</b>: membacakan total pembayaran.</li>
+    <li><b>“Bantuan”</b>: memanggil staf.</li>
+    <li><b>“Layar ganda”, “papan visual”, “panduan”, “uji coba”</b>: pindah halaman.</li>
+   </ul>
+   <h3>Pintasan keyboard</h3>
+   <ul><li><kbd>Alt</kbd> + <kbd>M</kbd>: mulai atau berhenti bicara.</li><li><kbd>Alt</kbd> + <kbd>S</kbd>: bacakan keras hidup atau mati.</li><li><kbd>Alt</kbd> + <kbd>1</kbd> sampai <kbd>5</kbd>: pindah halaman.</li></ul>
+   <p class="note">Bunyi pendek menandai mikrofon mulai (nada tinggi) dan berhenti (nada rendah). Halaman ini kompatibel dengan TalkBack dan VoiceOver.</p>
+  </div>
+ </div>
+</section>
+
+<section id="p-board" hidden>
+ <div class="card">
+  <h2>🗂️ Papan visual fisik</h2>
+  <p>Ketuk kartu untuk tampil layar penuh. Cetak untuk dilaminasi di meja kasir.</p>
+  <div class="row" style="margin:0 0 14px"><button class="btn plain" onclick="print()">🖨️ Cetak</button></div>
+  <div class="board" id="boardGrid"></div>
+ </div>
+</section>
+
+<section id="p-sop" hidden>
+ <div class="grid">
+  <div class="card sun">
+   <h2>📋 SOP pelayanan inklusif</h2>
+   <ol class="steps">
+    <li><span><b>Sapa:</b> kontak mata, senyum, lambaikan tangan ramah.</span></li>
+    <li><span><b>Sodorkan:</b> arahkan layar atau papan Ruang Rungu ke pelanggan.</span></li>
+    <li><span><b>Hadap pelanggan:</b> jangan bicara sambil menunduk atau menutup mulut.</span></li>
+    <li><span><b>Kalimat singkat:</b> satu informasi per pesan, tunggu respons.</span></li>
+    <li><span><b>Konfirmasi:</b> tampilkan ulang pesanan dan total sebelum bayar.</span></li>
+    <li><span><b>Tutup:</b> ucapkan terima kasih lewat layar atau gestur.</span></li>
+   </ol>
+   <p class="note">Isi SOP ini draf awal. Validasi bersama komunitas Teman Tuli, komunitas tuna netra, dan juru bahasa isyarat sebelum diterapkan.</p>
+  </div>
+  <div class="card">
+   <h2>Pocket guide staf</h2>
+   <div class="table-wrap"><table>
+    <tr><th>✅ Lakukan</th><th>❌ Hindari</th></tr>
+    <tr><td>Tatap pelanggan saat berkomunikasi</td><td>Berteriak atau melambat berlebihan</td></tr>
+    <tr><td>Gunakan teks, ikon, atau gestur sederhana</td><td>Memanggil dari belakang</td></tr>
+    <tr><td>Sabar menunggu jawaban</td><td>Menyentuh tanpa izin untuk menarik perhatian</td></tr>
+    <tr><td>Tanya cara komunikasi yang nyaman</td><td>Berasumsi semua Teman Tuli bisa membaca bibir</td></tr>
+   </table></div>
+   <h3>Frasa dasar BISINDO (checklist)</h3>
+   <p class="note">Gambar gestur sebaiknya dibuat bersama penutur BISINDO agar akurat.</p>
+  </div>
+  <div class="card sky" style="grid-column:1/-1">
+   <h2>Melayani teman tuna netra</h2>
+   <ol class="steps">
+    <li><span><b>Sebut diri dan peran Anda</b> saat menyapa, misalnya “Selamat siang, saya kasir.”</span></li>
+    <li><span><b>Bicara langsung kepada pelanggan</b>, bukan kepada pendampingnya.</span></li>
+    <li><span><b>Jelaskan yang terjadi:</b> “Saya input pesanan Anda”, “Struk sedang dicetak.”</span></li>
+    <li><span><b>Bacakan pesanan dan total</b> dengan jelas, lalu tanyakan apakah sudah benar.</span></li>
+    <li><span><b>Sebut nominal uang</b> yang diterima dan kembalian satu per satu.</span></li>
+    <li><span><b>Tawarkan bantuan, jangan menarik.</b> Tanya dulu sebelum menuntun, dan beri tahu saat Anda pergi.</span></li>
+   </ol>
+  </div>
+ </div>
+</section>
+
+<section id="p-test" hidden>
+ <div class="card mint">
+  <h2>📊 Pencatat uji coba</h2>
+  <p>Catat waktu transaksi dan kepuasan. Data hanya tersimpan selama halaman terbuka.</p>
+  <div class="grid" style="gap:12px">
+   <div><label for="cond">Kondisi</label><select id="cond"><option>Tanpa Ruang Rungu</option><option>Dengan Ruang Rungu</option></select></div>
+   <div><label for="sec">Waktu dalam detik</label><input id="sec" type="number" min="0"></div>
+   <div><label for="sat">Kepuasan 1 sampai 5</label><input id="sat" type="number" min="1" max="5"></div>
+  </div>
+  <div class="row"><button class="btn violet" id="add">➕ Tambah</button></div>
+  <div class="table-wrap" style="margin-top:14px"><table id="logT"><tr><th>Kondisi</th><th>Detik</th><th>Kepuasan</th></tr></table></div>
+ </div>
+</section>
+</main>
+<div id="gate" class="on" role="dialog" aria-modal="true" aria-labelledby="gt"><div class="in">
+ <div class="brand"><div class="logo" aria-hidden="true">🫱🏻‍🫲🏼</div><div><h1 style="font-size:30px;margin:0">Ruang Rungu</h1><p style="margin:0">Pilih peran perangkat ini</p></div></div>
+ <div class="card sun"><h2 id="gt">🧑‍💼 Perangkat staf (front office)</h2><p>Dipakai staf untuk bicara atau mengetik. Berikan kode ini ke perangkat tamu. Kode berlaku 5 menit setelah staf menekan Mulai.</p>
+  <div class="code" id="codeBox" aria-label="Kode sambungan">------</div>
+  <div class="row"><button class="btn teal" id="asStaff">Mulai sebagai staf</button><button class="btn plain" id="newCode">Kode baru</button></div></div>
+ <div class="card sky"><h2>🙋 Perangkat tamu</h2><p>Masukkan kode 6 angka yang tampil di perangkat staf.</p>
+  <label for="gcode">Kode dari staf</label><input id="gcode" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="123456">
+  <div class="row"><button class="btn coral" id="asGuest">Sambungkan sebagai tamu</button></div></div>
+ <p class="note" id="gerr" hidden role="alert"></p>
+ <button class="btn plain" id="asDemo">Mode satu layar (demo, tanpa sambungan)</button>
+</div></div>
+<div id="full" role="dialog" aria-label="Tampilan layar penuh"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+let readAloud=false,lastStaff='',totalText='',fs=34,rec=null,listening=false,target=null;
+const tabs=[...document.querySelectorAll('nav button')],names=['dual','voice','board','sop','test'];
+function go(p){tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.p===p));names.forEach(n=>$('p-'+n).hidden=n!==p)}
+tabs.forEach(b=>b.onclick=()=>go(b.dataset.p));
+function say(t,force){if(!('speechSynthesis' in window)||!(readAloud||force))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='id-ID';u.rate=+$('rate').value;speechSynthesis.speak(u)}
+function beep(f){try{const c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator();o.frequency.value=f;o.connect(c.destination);o.start();o.stop(c.currentTime+.12)}catch(e){}}
+function setRead(v){readAloud=v;$('readBtn').setAttribute('aria-pressed',v);$('readBtn').textContent='🔊 Bacakan keras: '+(v?'hidup':'mati')}
+$('readBtn').onclick=()=>setRead(!readAloud);
+let role='demo',rm=null,lastOut=null,tok=null;
+function out(topic,data){if(role==='demo'||!rm||rm.readyState!==1)return;rm.send(JSON.stringify({type:topic,t:data.t}))}
+function showGuest(t){lastStaff=t;$('guest').textContent=t;$('heard').textContent='Staf: '+t;if(/^Total pembayaran/.test(t))totalText=t;say(t)}
+function toGuest(t){if(!t.trim())return;if(role==='staff'){lastOut=t;out('msg',{t});const n=$('sentNote');n.textContent='✅ Terkirim ke tamu: '+t;n.hidden=false;return}showGuest(t)}
+function toStaff(t){if(!t.trim())return;if(role==='guest'){out('reply',{t});$('heard').textContent='Terkirim ke staf: '+t;return}addInbox(t)}
+function addInbox(t){const ul=$('inbox');if(ul.firstChild&&ul.firstChild.textContent==='Belum ada pesan.')ul.innerHTML='';const li=document.createElement('li');li.textContent=t;ul.prepend(li)}
+$('send').onclick=()=>{toGuest($('msg').value);$('msg').value=''};
+$('clear').onclick=()=>{$('msg').value='';$('guest').textContent='Selamat datang 👋'};
+[['👋','Selamat datang'],['⏳','Silakan tunggu sebentar'],['💳','Mau bayar tunai atau QRIS?'],['✅','Apakah pesanan sudah benar?'],['🧾','Struk perlu dicetak?'],['🙏','Terima kasih, sampai jumpa']].forEach(([e,t])=>{const b=document.createElement('button');b.className='chip';b.textContent=e+' '+t;b.onclick=()=>toGuest(t);$('quick').append(b)});
+[['👍','Ya'],['🙅','Tidak'],['🔁','Tolong ulangi'],['💵','Saya mau bayar tunai'],['📱','Pakai QRIS'],['🙏','Terima kasih']].forEach(([e,t])=>{const b=document.createElement('button');b.className='chip';b.textContent=e+' '+t;b.onclick=()=>toStaff(t);$('replies').append(b)});
+$('gsend').onclick=()=>{toStaff($('greply').value);$('greply').value=''};
+function rp(n){return 'Rp '+Number(n).toLocaleString('id-ID')}
+$('showTotal').onclick=()=>{const n=$('total').value.replace(/\D/g,'');if(!n)return;totalText='Total pembayaran '+rp(n);toGuest(totalText)};
+$('sayTotal').onclick=()=>say(totalText||'Total belum diisi.',true);
+$('again').onclick=()=>say(lastStaff||'Belum ada pesan dari staf.',true);
+$('help').onclick=()=>{toStaff('🆘 Pelanggan tuna netra minta bantuan');say('Staf dipanggil.',true)};
+$('testVoice').onclick=()=>say('Halo, ini tes suara Ruang Rungu.',true);
+$('fm').onclick=()=>{fs=Math.max(20,fs-4);$('guest').style.setProperty('--fs',fs+'px')};
+$('fp').onclick=()=>{fs=Math.min(80,fs+4);$('guest').style.setProperty('--fs',fs+'px')};
+$('contrast').onclick=()=>document.body.classList.toggle('hc');
+function command(t){const s=t.toLowerCase();
+ if(/ulangi/.test(s))return $('again').click(),1;
+ if(/total/.test(s))return $('sayTotal').click(),1;
+ if(/bantuan/.test(s))return $('help').click(),1;
+ if(/layar ganda/.test(s))return go('dual'),1;if(/papan visual/.test(s))return go('board'),1;
+ if(/panduan/.test(s))return go('sop'),1;if(/uji coba/.test(s))return go('test'),1;return 0}
+function listen(btn,onText){
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){alert('Browser ini belum mendukung pengenalan suara. Coba Chrome.');return}
+ if(listening&&rec){rec.stop();return}
+ rec=new SR();rec.lang='id-ID';rec.interimResults=false;
+ rec.onstart=()=>{listening=true;target=btn;btn.setAttribute('aria-pressed','true');beep(880)};
+ rec.onend=()=>{listening=false;btn.setAttribute('aria-pressed','false');beep(440)};
+ rec.onresult=e=>onText(e.results[0][0].transcript);rec.start()}
+$('dictate').onclick=()=>listen($('dictate'),t=>{$('msg').value=t});
+$('bigmic').onclick=()=>listen($('bigmic'),t=>{$('heard').textContent='Anda: '+t;if(!command(t)){toStaff(t)}});
+const tiles=[['👋','Halo','#ffc83d'],['🙏','Terima kasih','#ff9d8f'],['⏳','Tunggu sebentar','#7df0e0'],['💵','Bayar tunai','#b9a8ff'],['📱','Bayar QRIS','#8fd4ff'],['🧾','Struk?','#b7f08c'],['✅','Pesanan benar?','#ffc83d'],['🆘','Butuh bantuan?','#ff9d8f']];
+tiles.forEach(([i,t])=>{const b=document.createElement('button');b.className='tile';b.innerHTML='<i>'+i+'</i>'+t;b.onclick=()=>{const f=$('full');f.style.background=getComputedStyle(b).backgroundColor;f.innerHTML='<div><i>'+i+'</i>'+t+'</div>';f.classList.add('on')};$('boardGrid').append(b)});
+$('full').onclick=()=>$('full').classList.remove('on');
+$('add').onclick=()=>{if(!$('sec').value||!$('sat').value)return;const r=$('logT').insertRow();[$('cond').value,$('sec').value,$('sat').value].forEach(v=>r.insertCell().textContent=v);$('sec').value=$('sat').value=''};
+document.addEventListener('keydown',e=>{if(!e.altKey)return;const k=e.key.toLowerCase();
+ if(k==='m'){e.preventDefault();($('p-voice').hidden?$('dictate'):$('bigmic')).click()}
+ else if(k==='s'){e.preventDefault();setRead(!readAloud)}
+ else if(/^[1-5]$/.test(k)){e.preventDefault();go(names[k-1])}});
+const gate=$('gate');
+function newCode(){const a=new Uint32Array(1);crypto.getRandomValues(a);return String(100000+a[0]%900000)}
+let myCode=newCode();$('codeBox').textContent=myCode;
+$('newCode').onclick=()=>{myCode=newCode();$('codeBox').textContent=myCode};
+function gerr(m){const e=$('gerr');e.textContent=m;e.hidden=!m}
+function setRole(r){role=r;document.body.classList.remove('role-staff','role-guest');if(r!=='demo')document.body.classList.add('role-'+r);$('status').hidden=r==='demo';gate.classList.remove('on')}
+function txt(m){return m.data&&typeof m.data.t==='string'?m.data.t.slice(0,300):''}
+function connect(r,code){
+ gerr('');
+ let ws;
+ try{ws=new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host+'/ws?code='+code+'&role='+r+(tok?'&token='+tok:''))}
+ catch(e){gerr('Sambungan gagal. Buka lewat alamat situs yang sudah di-deploy.');return}
+ rm=ws;let opened=false;
+ ws.onopen=()=>{opened=true};
+ ws.onmessage=e=>{let d;try{d=JSON.parse(e.data)}catch(x){return}
+  const t=typeof d.t==='string'?d.t.slice(0,300):'';
+  if(d.type==='hello'){tok=d.token;if(role!==r){setRole(r);if(r==='guest'){setRead(true);go('dual')}}$('status').textContent='⏳ Menunggu perangkat lain · kode '+code}
+  else if(d.type==='peers'){const o=r==='staff'?d.guest:d.staff;$('status').textContent=(o>0?'🟢 Tersambung':'⏳ Menunggu perangkat lain')+' · kode '+code}
+  else if(d.type==='msg'&&r==='guest'&&t)showGuest(t);
+  else if(d.type==='reply'&&r==='staff'&&t)addInbox(t)};
+ ws.onclose=e=>{if(rm!==ws)return;
+  if(e.code===4001){resetRole();gerr('Kode sudah kedaluwarsa (berlaku 5 menit). Minta staf membuat kode baru.');return}
+  if(!opened){rm=null;gerr('Gagal tersambung. Periksa kode dan koneksi internet.');return}
+  $('status').textContent='🔴 Terputus, menyambung ulang…';setTimeout(()=>{if(rm===ws)connect(r,code)},2000)}}
+$('asStaff').onclick=()=>connect('staff',myCode);
+$('asGuest').onclick=()=>{const c=$('gcode').value.replace(/\D/g,'');if(c.length!==6){gerr('Kode harus 6 angka.');return}connect('guest',c)};
+$('asDemo').onclick=()=>{gerr('');setRole('demo')};
+function resetRole(){myCode=newCode();$('codeBox').textContent=myCode;if(rm){rm.onclose=null;rm.close();rm=null}tok=null;role='demo';lastOut=null;$('sentNote').hidden=true;document.body.classList.remove('role-staff','role-guest');$('status').hidden=true;gate.classList.add('on')}
+$('roleBtn').onclick=()=>{gerr('');resetRole()};
+</script>
+</body>
+</html>
